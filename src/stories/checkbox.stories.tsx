@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Checkbox } from '@/components/ui/checkbox';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -55,6 +57,19 @@ export const Grouped: Story = {
           마케팅 정보 수신에 동의합니다. (선택)
         </Checkbox.Label>
       </Checkbox.Group>
+    );
+  },
+};
+
+export const Controlled: Story = {
+  render: () => {
+    const [checked, setChecked] = useState<boolean | 'indeterminate'>(false);
+
+    return (
+      <Checkbox
+        checked={checked}
+        onCheckedChange={setChecked}
+      />
     );
   },
 };
