@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useLoginMutation } from '@/features/auth/services/query';
-import { LoginFormValues, loginSchema } from '@/schema/login';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { LoginFormValues, loginSchema } from '../schemas/login';
 
 const LoginFormtwStyles = {
   wrapper: 'space-y-10 pb-[138px] pt-[42px]',
@@ -32,10 +33,9 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     mutate(data, {
       onError: (error) => {
-        const errorMsg = JSON.parse(error.message);
         setError('password', {
           type: 'server',
-          message: errorMsg.message,
+          message: error.message,
         });
       },
     });
