@@ -14,20 +14,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Editor: Story = {
-  render: () => {
-    const textEditor = useTextEditor();
+const EditorComponent = () => {
+  const textEditor = useTextEditor();
 
-    return (
-      <div className="w-[400px]">
-        <TextEditor
-          value={textEditor.value}
-          onChange={textEditor.onChange}
-          placeholder="수업 내용을 작성해보세요."
-        />
-      </div>
-    );
-  },
+  return (
+    <div className="w-[400px]">
+      <TextEditor
+        value={textEditor.value}
+        onChange={textEditor.onChange}
+        placeholder="수업 내용을 작성해보세요."
+      />
+    </div>
+  );
+};
+
+export const Editor: Story = {
+  render: () => <EditorComponent />,
 };
 
 export const Viewer: Story = {
