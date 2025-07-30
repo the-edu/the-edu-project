@@ -1,8 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 
 import { ColumnLayout } from '@/components/layout/column-layout';
 
-import WriteForm from './write-form';
+import MetaSection from './meta-section';
+import SubmitSection from './submit-section';
+import VisibilitySection from './visiblity-section';
 
 const WriteArea = () => {
   return (
@@ -23,7 +27,18 @@ const WriteArea = () => {
           height={151}
         />
       </div>
-      <WriteForm />
+      <div className="space-y-8">
+        <MetaSection />
+        <hr
+          style={{
+            borderImage:
+              'repeating-linear-gradient(to right, gray 0, gray 4px, transparent 4px, transparent 8px)',
+            borderImageSlice: 1,
+          }}
+        />
+        <VisibilitySection />
+        <SubmitSection />
+      </div>
     </ColumnLayout.Right>
   );
 };
