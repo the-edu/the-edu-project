@@ -52,6 +52,3 @@ jobs:
           git init
           git remote add personal-repo https://the-edu:${{ secrets.PERSONAL_REPO_TOKEN }}@github.com/the-edu/the-edu-project.git
           git push personal-repo --delete "$BRANCH"
-
-
-          
