@@ -1,6 +1,11 @@
-import { CommonResponse, apiClient } from '@/lib/api';
+import { CommonResponse, PaginationMeta, apiClient } from '@/lib/api';
 
-import { ConnectedMember, StudyNote, StudyRoom } from '../type';
+import {
+  ConnectedMember,
+  StudyNote,
+  StudyNoteGroupResponse,
+  StudyRoom,
+} from '../type';
 
 export const getStudyRooms = async () => {
   const response = (
@@ -12,13 +17,14 @@ export const getStudyRooms = async () => {
 export const getConnectMembers = async (roomId: number) => {
   const response = (
     await apiClient.get<
-      CommonResponse<{
-        members: ConnectedMember[];
-        pageNumber: number;
-        size: number;
-        totalElements: number;
-        totalPages: number;
-      }>
+      CommonResponse<
+        PaginationMeta & {
+          members: {
+            studentInfo: ConnectedMember;
+            parentInfo: ConnectedMember;
+          }[];
+        }
+      >
     >(`/teacher/study-rooms/${roomId}/members`)
   ).data;
 
@@ -28,3 +34,31 @@ export const getConnectMembers = async (roomId: number) => {
 export const writeStudyNote = async (data: StudyNote) => {
   await apiClient.post('/teacher/teaching-notes', data);
 };
+
+export const getStudyNoteGroups = async () => {
+  const response = (
+    await apiClient.get<CommonResponse<StudyNoteGroupResponse>>(
+      `/teacher/teaching-note-groups`
+    )
+  ).data;
+
+  return response.data;
+};
+
+// export const getStudyNotesByStudyRoomId = async ({
+//   roomId,
+//   pageble,
+// }: {
+//   roomId: number;
+//   pageble: Pageable;
+// }) => {
+//   const response = (
+//     await apiClient.get<
+//       CommonResponse<PaginationMeta & { content: StudyNote[] }>
+//     >(
+//       `/teacher/study-rooms/${roomId}/teaching-notes?${objectToQueryString(pageble)}`
+//     )
+//   ).data;
+
+//   return response.data;
+// };

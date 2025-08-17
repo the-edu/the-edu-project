@@ -60,6 +60,7 @@ export default function TagInput({
           <div
             className={cn(
               'border-gray-scale-gray-50 text-gray-scale-gray-40 flex min-h-[56px] cursor-text flex-wrap items-center gap-2 rounded-sm border px-6 py-[15px]',
+              'rounded-[4px] border outline-none',
               open ? 'border-line-line3' : '',
               error ? 'border-system-warning' : '',
               disabled
@@ -79,7 +80,7 @@ export default function TagInput({
                 {selected.map((student) => (
                   <div
                     key={student.id}
-                    className="bg-background-gray border-line-line1 flex items-center gap-1 rounded-sm px-2 py-1 text-sm"
+                    className="bg-background-gray border-line-line1 flex items-center gap-1 rounded-sm py-2 pl-[12px] text-sm"
                   >
                     <span className="text-base text-black">{student.name}</span>
                     {student.role === 'ROLE_PARENT' && (
@@ -93,7 +94,7 @@ export default function TagInput({
                         e.stopPropagation();
                         toggleSelect(student);
                       }}
-                      className="ml-1 text-sm leading-none text-gray-400 hover:text-gray-600"
+                      className="ml-1 h-6 w-6 cursor-pointer text-sm leading-none text-gray-400 hover:text-gray-600"
                     >
                       <Image
                         src="/common/close.svg"

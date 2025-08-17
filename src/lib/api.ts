@@ -98,3 +98,22 @@ export type CommonResponse<T> = {
   message: string;
   data: T;
 };
+
+export interface Sort {
+  empty: boolean;
+  sorted: boolean;
+  unsorted: boolean;
+}
+
+export interface Pageable {
+  page: number;
+  size: number;
+  sort: string[];
+}
+
+export interface PaginationMeta {
+  pageNumber: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}

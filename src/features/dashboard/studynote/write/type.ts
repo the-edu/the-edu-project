@@ -1,7 +1,5 @@
 import { Role } from '@/features/auth/type';
-import { z } from 'zod';
-
-import { StudyNoteVisibility } from './schemas/note';
+import { Sort } from '@/lib/api';
 
 export interface StudyNote {
   studyRoomId: number;
@@ -20,6 +18,78 @@ export interface ConnectedMember {
   joinDate: string | null;
 }
 
+// 스터디 노트 그룹
+
+export interface Teacher {
+  id: number;
+  email: string;
+  password: string;
+  name: string;
+  nickname: string;
+  phoneNumber: string;
+  birthDate: string;
+  acceptOptionalTerm: boolean;
+  role: Role;
+  regDate: string;
+  modDate: string;
+}
+
+export interface StudyRoom {
+  id: number;
+  name: string;
+  description: string;
+  teacher: Teacher;
+  capacity: number;
+  visibility: string;
+  startDate: string;
+  endDate: string;
+  regDate: string;
+  modDate: string;
+}
+
+export interface TempStudyNote {
+  id: number;
+  studyRoom: StudyRoom;
+  group: string;
+  title: string;
+  content: string;
+  visibility: string;
+  viewCount: number;
+  taughtAt: string;
+  regDate: string;
+  modDate: string;
+}
+
+interface StudyNoteGroup {
+  id: number;
+  title: string;
+  regDate: string;
+  modDate: string;
+  teacherId: number;
+  teachingNotes: TempStudyNote[];
+}
+
+export interface StudyNoteGroupResponse {
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+  numberOfElements: number;
+  sort: Sort;
+  pageable: {
+    offset: number;
+    sort: Sort;
+    paged: boolean;
+    pageNumber: number;
+    pageSize: number;
+    unpaged: boolean;
+  };
+  first: boolean;
+  last: boolean;
+  empty: boolean;
+  content: StudyNoteGroup[];
+}
+
 // 임시로 작성
 export interface StudyRoom {
   id: number;
@@ -32,5 +102,3 @@ export interface StudyRoom {
   startDate: string;
   endDate: string;
 }
-
-export type StudyNoteVisibility = z.infer<typeof StudyNoteVisibility>;
