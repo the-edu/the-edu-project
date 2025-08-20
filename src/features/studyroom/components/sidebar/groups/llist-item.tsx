@@ -31,7 +31,6 @@ export const GroupListItem = ({
       )}
       onClick={() => handleSelectGroup(group.id)}
     >
-      {/* 왼쪽: 아이콘 + 텍스트 */}
       <div className="flex min-w-0 items-center gap-2">
         <div
           className={cn(

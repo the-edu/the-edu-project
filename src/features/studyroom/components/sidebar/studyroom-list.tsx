@@ -42,7 +42,6 @@ export const StudyroomList = ({
           )}
           onClick={() => handleSelectGroup(group.id)}
         >
-          {/* 왼쪽: 아이콘 + 텍스트 */}
           <div className="flex min-w-0 items-center gap-2">
             <div
               className={cn(
@@ -56,15 +55,13 @@ export const StudyroomList = ({
             />
             <p
               className={cn(
-                'font-body2-heading text-gray-scale-gray-60 flex-1 truncate', // ← 핵심
+                'font-body2-heading text-gray-scale-gray-60 flex-1 truncate',
                 selectedGroupId === group.id && 'text-key-color-primary'
               )}
             >
               {group.name}
             </p>
           </div>
-
-          {/* 오른쪽: 케밥 메뉴 */}
 
           <DropdownMenu
             open={selectedGroupId === group.id}
@@ -76,7 +73,7 @@ export const StudyroomList = ({
                 alt="kebab-menu"
                 width={24}
                 height={24}
-                className="/* ← 아이콘 폭 고정 */ hover:bg-gray-scale-gray-5 hidden shrink-0 cursor-pointer rounded-[8px] p-1 group-hover:block"
+                className="hover:bg-gray-scale-gray-5 hidden shrink-0 cursor-pointer rounded-[8px] p-1 group-hover:block"
               />
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
