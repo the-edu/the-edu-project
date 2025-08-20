@@ -25,19 +25,20 @@ interface GroupDialogState {
 
 export const StudyroomGroups = ({
   groups,
-  selectedId,
-  onSelect,
   handleGroupDeleteConfirmAction,
 }: {
   groups: { id: number; name: string }[];
-  selectedId: number;
-  onSelect: (id: number) => void;
   handleGroupDeleteConfirmAction: () => void;
 }) => {
+  const [selectedGroupId, setSelectedGroupId] = useState<number>(12);
   const [groupDialog, setGroupDialog] = useState<GroupDialogState>({
     isOpen: false,
     type: null,
   });
+
+  const handleSelectGroup = (id: number) => {
+    setSelectedGroupId(id);
+  };
 
   const openGroupDialog = (type: GroupDialogType, data?: GroupDialogData) => {
     setGroupDialog({ isOpen: true, type, data });
@@ -54,14 +55,14 @@ export const StudyroomGroups = ({
         break;
       case 'rename':
         openGroupDialog('rename', {
-          groupId: selectedId,
-          currentName: groups.find((g) => g.id === selectedId)?.name,
+          groupId: selectedGroupId,
+          currentName: groups.find((g) => g.id === selectedGroupId)?.name,
         });
         break;
       case 'delete':
         openGroupDialog('delete', {
-          groupId: selectedId,
-          groupName: groups.find((g) => g.id === selectedId)?.name,
+          groupId: selectedGroupId,
+          groupName: groups.find((g) => g.id === selectedGroupId)?.name,
         });
         break;
     }
@@ -113,8 +114,8 @@ export const StudyroomGroups = ({
             <GroupListItem
               key={group.id}
               group={group}
-              selectedGroupId={selectedId}
-              handleSelectGroup={onSelect}
+              selectedGroupId={selectedGroupId}
+              handleSelectGroup={handleSelectGroup}
               handleRenameGroup={() => handleGroupAction('rename')}
               handleDeleteGroup={() => handleGroupAction('delete')}
             />

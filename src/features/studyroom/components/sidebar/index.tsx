@@ -27,7 +27,6 @@ const studyroomGroups = [
 ];
 
 export const StudyroomSidebar = () => {
-  const [selectedGroupId, setSelectedGroupId] = useState<number>(12);
   const [isRoomRenameOpen, setRoomRenameOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [roomName, setRoomName] = useState('');
@@ -157,8 +156,6 @@ export const StudyroomSidebar = () => {
         <StudyStats />
         <StudyroomGroups
           groups={studyroomGroups}
-          selectedId={selectedGroupId}
-          onSelect={(id) => setSelectedGroupId(id)}
           handleGroupDeleteConfirmAction={() => setIsDeleteConfirmOpen(true)}
         />
         <div className="font-body2-normal text-gray-scale-gray-60 flex items-end justify-end">
