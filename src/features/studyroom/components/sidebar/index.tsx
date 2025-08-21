@@ -22,7 +22,7 @@ const studyroomGroups = [
   },
   {
     id: 3,
-    name: '가가중가가중가가중가가중',
+    name: '가가중가가중가가중가가중가',
   },
 ];
 
